@@ -26,5 +26,18 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
 
+        if (config('database.default') === 'sqlite') {
+            $sourcePath = database_path('database.sqlite');
+            $runtimePath = '/tmp/database.sqlite';
+
+            if (is_file($sourcePath) && !is_file($runtimePath)) {
+                copy($sourcePath, $runtimePath);
+            }
+
+            if (is_file($runtimePath)) {
+                config(['database.connections.sqlite.database' => $runtimePath]);
+            }
+        }
+
     }
 }
