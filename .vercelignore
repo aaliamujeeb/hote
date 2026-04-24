@@ -1,6 +1,7 @@
 .git
 .env
 node_modules
+hote
 vendor
 storage/logs
 storage/framework/cache/data
