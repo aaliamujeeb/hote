@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: hote
+    runtime: docker
+    plan: free
+    autoDeploy: true
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: APP_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
